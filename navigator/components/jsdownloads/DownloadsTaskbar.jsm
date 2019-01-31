@@ -16,17 +16,17 @@ XPCOMUtils.defineLazyModuleGetter(this, "Services",
                                "resource://gre/modules/Services.jsm");
 
 XPCOMUtils.defineLazyGetter(this, "gWinTaskbar", function() {
-  if (!("@mozilla.org/windows-taskbar;1" in Cc)) {
+  if (!("@mozilla.org/windows-taskbar;1" in Components.classes)) {
     return null;
   }
-  let winTaskbar = Cc["@mozilla.org/windows-taskbar;1"]
+  let winTaskbar = Components.classes["@mozilla.org/windows-taskbar;1"]
                      .getService(Components.interfaces.nsIWinTaskbar);
   return winTaskbar.available && winTaskbar;
 });
 
 XPCOMUtils.defineLazyGetter(this, "gMacTaskbarProgress", function() {
-  return ("@mozilla.org/widget/macdocksupport;1" in Cc) &&
-         Cc["@mozilla.org/widget/macdocksupport;1"]
+  return ("@mozilla.org/widget/macdocksupport;1" in Components.classes) &&
+         Components.classes["@mozilla.org/widget/macdocksupport;1"]
            .getService(Components.interfaces.nsITaskbarProgress);
 });
 

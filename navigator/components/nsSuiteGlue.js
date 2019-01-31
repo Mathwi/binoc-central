@@ -567,6 +567,25 @@ SuiteGlue.prototype = {
       notifyBox.showUpdateWarning();
 
     this._checkForDefaultClient(aWindow);
+
+#ifdef MOZ_JSDOWNLOADS
+    // Initialize the download manager after the app starts so that
+    // auto-resume downloads begin (such as after crashing or quitting with
+    // active downloads) and speeds up the first-load of the download manager.
+    // If the user manually opens the download manager before the init is
+    // done, the downloads will start right away, and initializing again
+    // won't hurt.
+    // Afterwards init the taskbar and eventuall show the download progress if
+    // on a supported platform.
+    (async () => {
+      DownloadsCommon.init();
+    })().catch(ex => {
+      Cu.reportError(ex);
+    }).then(() => {
+      Components.utils.import("resource:///modules/DownloadsTaskbar.jsm", {})
+        .DownloadsTaskbar.registerIndicator(aWindow);
+    });
+#endif
   },
 
   /**
