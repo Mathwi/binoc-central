@@ -74,7 +74,7 @@ comm.jar:
   content/communicator/safeMode.js                                 (content/safeMode.js)
   content/communicator/safeMode.xul                                (content/safeMode.xul)
   content/communicator/sanitize.xul                                (content/sanitize.xul)  
-  content/communicator/tasksOverlay.js                             (content/tasksOverlay.js)
+* content/communicator/tasksOverlay.js                             (content/tasksOverlay.js)
   content/communicator/tasksOverlay.xul                            (content/tasksOverlay.xul)
   content/communicator/utilityOverlay.js                           (content/utilityOverlay.js)
   content/communicator/utilityOverlay.xul                          (content/utilityOverlay.xul)

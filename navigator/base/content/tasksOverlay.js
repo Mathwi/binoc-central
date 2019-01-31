@@ -69,6 +69,11 @@ function toPermissionsManager(aViewerType, aHost = "") {
 
 function toDownloadManager()
 {
+#ifdef MOZ_JSDOWNLOADS
+  Components.classes["@mozilla.org/suite/suiteglue;1"]
+    .getService(Components.interfaces.nsISuiteGlue)
+    .showDownloadManager();
+#else
   //Ported extensions may only implement the Basic toolkit Interface
   //and not our progress dialogs.
   var dlUI = Components.classes["@mozilla.org/download-manager-ui;1"]
@@ -78,6 +83,7 @@ function toDownloadManager()
   } else {
     dlUI.show(window);
   }
+#endif
 }
 
 function toDataManager(aView)

@@ -27,6 +27,11 @@ interface nsIDOMWindow;
 interface nsISuiteGlue : nsISupports
 {
   /**
+   * Opens the Download Manager.
+   */
+  void showDownloadManager( [optional] in boolean newDownload );
+
+  /**
    * Deletes privacy sensitive data according to user preferences
    *
    * @param aParentWindow an optionally null window which is the parent of the

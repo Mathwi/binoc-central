@@ -13,6 +13,7 @@ MOZ_BRANDING_DIRECTORY=navigator/branding/nightly
 MOZ_OFFICIAL_BRANDING_DIRECTORY=$MOZ_BRANDING_DIRECTORY
 MOZ_EXTENSIONS_DEFAULT=" gio"
 MOZ_UPDATER=1
+MOZ_JSDOWNLOADS=1
 # This should usually be the same as the value MAR_CHANNEL_ID.
 # If more than one ID is needed, then you should use a comma separated list
 # of values.

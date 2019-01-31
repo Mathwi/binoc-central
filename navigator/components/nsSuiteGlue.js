@@ -45,6 +45,8 @@ const BOOKMARKS_BACKUP_INTERVAL = 86400 * 1000;
 // Maximum number of backups to create.  Old ones will be purged.
 const BOOKMARKS_BACKUP_MAX_BACKUPS = 10;
 
+var gDownloadManager;
+
 // Constructor
 function SuiteGlue() {
   XPCOMUtils.defineLazyServiceGetter(this, "_idleService",
@@ -1154,6 +1156,41 @@ SuiteGlue.prototype = {
   // ------------------------------
   // public nsISuiteGlue members
   // ------------------------------
+
+  showDownloadManager: function(newDownload)
+  {
+#ifdef MOZ_JSDOWNLOADS
+    if (!gDownloadManager) {
+      // Use an empty arguments string or the download manager window
+      // will miss the toolbar and other features.
+      var argString = Components.classes["@mozilla.org/supports-string;1"]
+                        .createInstance(Components.interfaces.nsISupportsString);
+      argString.data = "";
+      gDownloadManager = Services.ww.openWindow(null,
+                                                "chrome://communicator/content/downloads/downloadmanager.xul",
+                                                null, "all,dialog=no",
+                                                argString);
+      gDownloadManager.addEventListener("load", function() {
+        gDownloadManager.addEventListener("unload", function() {
+          gDownloadManager = null;
+        });
+        // Attach the taskbar progress meter to the download manager window.
+        Components.utils.import("resource:///modules/DownloadsTaskbar.jsm")
+                  .DownloadsTaskbar.attachIndicator(gDownloadManager);
+      });
+    } else if (!newDownload ||
+               Services.prefs.getBoolPref(PREF_FOCUS_WHEN_STARTING)) {
+        gDownloadManager.focus();
+    } else {
+      // This preference may not be set, so defaulting to two.
+      var flashCount = 2;
+      try {
+        flashCount = Services.prefs.getIntPref(PREF_FLASH_COUNT);
+      } catch (e) { }
+      gDownloadManager.getAttentionWithCycleCount(flashCount);
+    }
+#endif
+  },
 
   sanitize: function(aParentWindow)
   {

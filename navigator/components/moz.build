@@ -6,7 +6,6 @@
 DIRS += [
     'build',
     'dirprovider',
-    'downloads',
     'feeds',
     'permissions',
     'sessionstore',
@@ -14,6 +13,11 @@ DIRS += [
     'sidebar',
     'smile',
 ]
+
+if CONFIG['MOZ_JSDOWNLOADS']:
+    DIRS += ['jsdownloads']
+else:
+    DIRS += ['downloads']
 
 XPIDL_SOURCES += [
     'nsISuiteGlue.idl',
@@ -26,6 +30,7 @@ EXTRA_COMPONENTS += [
     'nsAbout.js',
     'nsBrowserContentHandler.js',
     'nsGopherProtocolStubHandler.js',
-    'nsSuiteGlue.js',
     'nsTypeAheadFind.js',
 ]
+
+EXTRA_PP_COMPONENTS += ['nsSuiteGlue.js']
