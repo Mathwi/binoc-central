@@ -23,3 +23,6 @@ pref("app.vendorURL", "http://binaryoutcast.com/projects/interlink/");
 
 // Release notes URL
 pref("app.releaseNotesURL", "http://binaryoutcast.com/projects/interlink/");
+
+// Base URL for web-based support pages.
+pref("app.support.baseURL", "http://binaryoutcast.com/interact/");
