@@ -23,3 +23,6 @@ pref("app.vendorURL", "http://binaryoutcast.com/projects/interlink/");
 
 // Release notes URL
 pref("app.releaseNotesURL", "https://rtfreesoft.blogspot.com/search/label/mailnews/");
+
+// Base URL for web-based support pages.
+pref("app.support.baseURL", "https://rtfreesoft.blogspot.com/p/browser-help.html#mailnews-help");
