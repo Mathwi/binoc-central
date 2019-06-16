@@ -20,3 +20,6 @@ pref("app.update.download.backgroundInterval", 60);
 pref("app.update.promptWaitTime", 86400);
 
 pref("app.vendorURL", "http://binaryoutcast.com/projects/interlink/");
+
+// Release notes URL
+pref("app.releaseNotesURL", "http://binaryoutcast.com/projects/interlink/");
