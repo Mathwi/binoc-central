@@ -134,9 +134,6 @@ pref("app.update.url.details", "http://binaryoutcast.com/projects/interlink/");
 // Show the Update Checking/Ready UI when the user was idle for x seconds
 pref("app.update.idletime", 60);
 
-// Release notes URL
-pref("app.releaseNotesURL", "http://binaryoutcast.com/projects/interlink/");
-
 // URL for "Learn More" for Crash Reporter.
 pref("toolkit.crashreporter.infoURL",
      "https://www.mozilla.org/thunderbird/legal/privacy/#crash-reporter");");
